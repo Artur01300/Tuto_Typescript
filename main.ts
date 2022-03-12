@@ -1,22 +1,18 @@
-const form = document.getElementById('signupForm');
-const firstName = document.getElementById('firstName') as HTMLInputElement;
-const age = document.getElementById('age') as HTMLInputElement;
 
-function gift(age:number){
-    return + age + 3;
-}
 
-form.addEventListener('submit', e => {
-    e.preventDefault();
+let pseudo: string = 'Superman';
+let total: number = 200;
+let isLoading: boolean = false;
 
-    if(+age.value < 18){
-        console.log('Iscription refusée');
-    }
-    else{
-        console.log(`
-        BienVenue ${firstName.value}.
-        Vous avez ${age.value}.
-        Vous aurez droit à un cadeau quand vous ${gift(+age.value)} aurez ans
-        `);
-    }
-})
+//IntelliSense - VScode
+
+let totalString: string = total.toString();
+console.log(totalString)
+
+//backtick littéraux de gabarit convertie les ints en chene de caractaire 
+let msgInfo = `
+    Bienvenue ${pseudo},
+    Vous avez ${total} points ${isLoading}
+`;
+
+console.log(msgInfo)
