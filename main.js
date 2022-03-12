@@ -1,18 +1,21 @@
-// let colors: Array<string> = ['red', 'blue', 'orenge'];
-var colors = ['red', 'blue', 'orenge'];
-var numbers = [1, 7, 8.6];
-numbers[0] = 3;
-console.log(numbers);
-var values = [];
-values = [
-    'Bonjour',
-    true,
-    500,
-    {
-        id: 2369,
-        member: true,
-        hobbies: ['penture', 'youtube']
-    }
-];
-console.log(values);
-var strNumBoolArray = ['red', 3, true];
+//ici l'order est oblicatoire
+var x;
+x = ['hello', 20];
+// console.log(x)
+//avec la methode push on peut ajouter un autre élément(s) dans le variable x
+x.push('teste');
+// console.log(x)
+//La méthode toString permet de trinsormer l'index 1 en chen de caractaire
+console.log(x[1].toString());
+// pour faire un tupel pour un objet
+// *avant
+// const member = {
+//     level: ['admin', 1]
+// }
+// member.level[0] = 200;
+// console.log(member.level)
+//après
+var member = {
+    level: ['admin', 1]
+};
+member.level[0] = 200;
