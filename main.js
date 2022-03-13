@@ -1,21 +1,29 @@
-//ici l'order est oblicatoire
-var x;
-x = ['hello', 20];
-// console.log(x)
-//avec la methode push on peut ajouter un autre élément(s) dans le variable x
-x.push('teste');
-// console.log(x)
-//La méthode toString permet de trinsormer l'index 1 en chen de caractaire
-console.log(x[1].toString());
-// pour faire un tupel pour un objet
-// *avant
-// const member = {
-//     level: ['admin', 1]
+// 1. mailleur partique d'écrire l'objet en Typescripte
+// let car = {
+//     color: 'red',
+//     date: 2020,
+//     speed: 500
 // }
-// member.level[0] = 200;
-// console.log(member.level)
-//après
-var member = {
-    level: ['admin', 1]
-};
-member.level[0] = 200;
+//2. on peux le faire mais c'est pas un bon practique
+// let car :{
+//     color: string;
+//     date: number;
+//     speed: number;
+// } = {
+//     color: 'red',
+//     date: 2020,
+//     speed: 500
+// }
+//3. on peux pas ajouter un nouveau propriéte dans l'objet
+// car.options = ["GPS", "ABS"];
+//4. on peux pas assignier l'objet à un chaine de caractair ou un tableau etc
+// car = "helle";
+// let testHello = "Hello";
+// car = testHello
+//5. ne pas faire let car:object = {}, car on peux pas acceder à ses propriétés et valeurs
+// let car: object ={
+//     color: 'red',
+//     date: 2020,
+//     speed: 500
+// }
+// car.color// ça marche pas car on arrive pas accèder à ses propriétés et valeurs
