@@ -1,50 +1,32 @@
 /*
-  Type Any utiliser avec modération! Type Any ne va pas vérifier votre code!
-  Peut être utile dans certains cas. Exemple:
-    On ne sait pas quel type de dat à récupérer d'une API, d'un formulaire, on souhaite modier le type etc..
-    Si type Any est utilisé n'obliez bas à verifier le code(typeof)
+  Type Unknown
+  Via <Unknown>, le TypeScript définit un type comme étant inconnu!
+  Comme le type <Any>, Unknown accepte tous les types
+
+  Important! Pour pouvoir utiliser le type Unknown, on doit d'abord vérifier le type
+
+  Imortant! si on a le chois entre any e unknown, c'est consaillé d'utiliser unknown
 */
-//1.
-var anyDada = 'Hello';
-console.log(typeof anyDada); //String
-anyDada = 20;
-console.log(typeof anyDada); //Number
-anyDada = true;
-console.log(typeof anyDada); //Boolean
-//Attation ! Le type d'un <Array> est un object
-anyDada = ['Hello'];
-console.log(typeof anyDada); //Object
-anyDada = {
-    colors: ["Green", "Red", "Bleu"]
-};
-console.log(typeof anyDada); //Object
-//2.
-/*
-  let anyDataArray: any = [];
-  ici on peut changer le type arrey en tout ce qu'on veut
-*/
-// let anyDataArray: any = ['123'];
-// anyDataArray = 2
-// console.log(anyDataArray)
-/*
-  let anyDataArray: any[] = [];
-  ici on doit obligatoirment avoir un array et on ne peut pas changer son type
-*/
-// let anyDataArray: any[] = ['123'];
-// anyDataArray = [2]
-// console.log(anyDataArray)
-//3.
-//ici on peut modifier les valeurs avec differant de types
-// let userInfos:any = {
-//   name: 'Hqkermen',
-//   pseudo: 123456
-// }
-// userInfos.pseudo= "1266";
-// console.log(userInfos)
-// ou, on peut les paramètrer comme on vuet
-var userInfos = {
-    name: 'Hqkermen',
-    pseudo: 123456
-};
-userInfos.pseudo = "1266";
-console.log(userInfos);
+//1. pour le cas any ça marche
+var inputData;
+inputData = true;
+console.log(typeof inputData); //boolean
+var inputAge;
+inputAge = inputData; //ok
+console.log(typeof inputAge); //boolean
+//2. unknown ça marche pas car on doit verifier avec if else
+//à qui sert unknown ? il pertmet de verifier sont type aveant d'asignier( pour être sure)
+// let inputData2: unknown;
+// inputData2 = 20;
+// console.log(typeof inputData2);//number
+// let inputAge2: number;
+// inputAge2 = inputData2//ok
+// console.log(typeof inputAge2); //marche pas
+//3. correction d'erreur: on verifie avec typeof 
+var inputData2;
+inputData2 = 20;
+var inputAge2;
+if (typeof inputData2 === 'number') {
+    inputAge2 = inputData2;
+    console.log(typeof inputAge2); //number
+}
