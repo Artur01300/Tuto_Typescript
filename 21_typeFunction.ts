@@ -60,9 +60,9 @@ function displayClg2(arg3: number){
   2. une foie ajouté type fucntion < (num: number)=> number >, on voir les érreur apparaitres ( <num: number >) est un argument
   3. Attention ! il faut passer argument <num3:number> si non on oras cet error: Impossible d'assigner le type '(num: number) => number' au type '() => number'.ts(2322)
 */
-let age3: (num3: number) => number; // Atantion ! c'est n'est pas une fonctin fléchée amis un type function qui return number obligatoirement
+let age3: (num3: number)=> number; // Atantion ! c'est n'est pas une fonctin fléchée amis un type function qui return number obligatoirement
 age3 = gift3; //ok
 console.log('age_1 ', age3(20)) //23
 
 age3 = displayClg2; 
-console.log('age_2 ', age3( 20)) //20
+console.log('age_2 ', age3( 20)) // undefined
