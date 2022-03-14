@@ -1,32 +1,36 @@
 /*
-  Type Unknown
-  Via <Unknown>, le TypeScript définit un type comme étant inconnu!
-  Comme le type <Any>, Unknown accepte tous les types
-
-  Important! Pour pouvoir utiliser le type Unknown, on doit d'abord vérifier le type
-
-  Imortant! si on a le chois entre any e unknown, c'est consaillé d'utiliser unknown
+  Function & Void Type
+  - Une fonction qui retoune une valeur définit le type de la valeur retournée via inférence au Attribution.
+  - Une fonction qui ne retourne rien définit également un type <void> pour Undefinded
 */
-//1. pour le cas any ça marche
-var inputData;
-inputData = true;
-console.log(typeof inputData); //boolean
-var inputAge;
-inputAge = inputData; //ok
-console.log(typeof inputAge); //boolean
-//2. unknown ça marche pas car on doit verifier avec if else
-//à qui sert unknown ? il pertmet de verifier sont type aveant d'asignier( pour être sure)
-// let inputData2: unknown;
-// inputData2 = 20;
-// console.log(typeof inputData2);//number
-// let inputAge2: number;
-// inputAge2 = inputData2//ok
-// console.log(typeof inputAge2); //marche pas
-//3. correction d'erreur: on verifie avec typeof 
-var inputData2;
-inputData2 = 20;
-var inputAge2;
-if (typeof inputData2 === 'number') {
-    inputAge2 = inputData2;
-    console.log(typeof inputAge2); //number
+//1.function qui return une valeur et qui n'est pas type Void
+function gift(age) {
+    return age + 3;
 }
+console.log(typeof gift(40));
+//2. on peut aussi exiger de resevoir une valeur par exemple string < function gift2(age: number):string >
+function gift2(age) {
+    var result = age + 3;
+    return result.toString();
+}
+//3. il est consailler de ne pas présiser la voleur qu'on veut retourner < function gift3(age: number) > car le function le fait automatiquement
+function gift3(age) {
+    var result = age + 3;
+    return result.toString();
+}
+console.log(typeof gift3(40));
+//4. fuction type Void
+function gift4(age) {
+    return age + 3;
+}
+//function type Void car il a pas le retern
+function clgData(arg) {
+    console.log("Resultat: ".concat(arg));
+}
+clgData(gift4(20));
+//pour précicer un peut plus notre function <clgdata2> si on console log ça nous denera Undefined car il na pas un return
+//il es consailler de ne pas préssiser le type pour fare travailer le typeScripte automatiquement
+function clgData2() {
+    console.log('hello worldf');
+}
+console.log(clgData2());
