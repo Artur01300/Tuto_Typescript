@@ -1,51 +1,70 @@
 /*
   Function Type
-  - Type Function générique: (Une seule contrinte: le type doit être une fonction)
-  - Types bien spécifiques: Non seulement c'est une fonction mais celle-ci doit être très explicite (param: type) => teturn type
+  - Paramètres facutatifs
+  - Paramètres par défaut
 */
-//1. Type Function générique: (Une seule contrinte: le type doit être une fonction).exemple qui nous motre les errors à évité avec ce Type Function générique
-//le fait que la variable <age> est un type any le typeScript ne détécte par cet erreur
-function gift(num) {
-    return num + 3;
+//1. exerciece
+// function buildName(firstName: string, lastName: string){
+//   return firstName + " " + lastName
+// }
+var result1 = buildName('Bobe'); //Bob undefinded
+// console.log(result1);
+//ici TS n'est pas content par contr pour JS pas de problème (il ignore le <Hello>)
+// let result2 = buildName('Bobe', 'Adams', 'Hello');// Bobe Adams
+// console.log(result2)
+// ici tout est correct
+// let result3 = buildName('Bobe', 'Adams');// Bobe Adam
+// console.log(result3)
+//------------------------------------------- 
+//2. exerciece
+//< ? > signifie c'est pas emportant le 2em argument
+function buildName(firstName, lastName) {
+    return firstName + " " + lastName;
 }
-var age;
-age = gift;
-// console.log('age_1 ', age(20)) //23
-age = 'Bonjour';
-// console.log('age_2 ', age( 20)) // Error: age n'est pas une fonction
-//2. correction l'error avec la <Function>
-function gift2(num) {
-    return num + 3;
+var result4 = buildName('Bobe'); //Bob undefinded
+// console.log(result4);
+// vour éviter < undefinded > dans le console log, on peut vérifier avec if else:
+function buildName2(firstName, lastName) {
+    if (lastName)
+        return firstName + " " + lastName;
+    else
+        return firstName;
 }
-// ici je créer une function pour la place de 'Bonjour'
-// par contre, le problème avec ça, c'est que typs scripte il détécte pa une erreur mais dans le console log  on orra cet error < age_2  undefined >
-function displayClg(arg2) {
-    // console.log(arg2)
+var result5 = buildName2('Bobe'); //Bob sans undefinded
+// console.log(result5);
+//2. 2em argument sera remplaser automatiquent si il n'est pas fournie
+function buildName3(firstName, lastName) {
+    if (lastName === void 0) { lastName = "Smith"; }
+    return firstName + " " + lastName;
 }
-//Une fois ajouter le type <Function> ça nous permet détécter les erreur
-var age2;
-age2 = gift2; //ok
-// console.log('age_1 ', age2(20)) //23
-age2 = displayClg;
-// console.log('age_2 ', age2( 20)) // undefined
-//Per contre cet méthode ne régre pas le vrai problème c'est pour ce la le Function avec le Types bien spécifiques est conseillé
-//3. Function avec le Types bien spécifiques
-//- Types bien spécifiques: Non seulement c'est une fonction mais celle-ci doit être très explicite (param: type) => teturn type
-function gift3(num3) {
-    return num3 + 3;
-}
-// ici j'ajoute à l'argument < arg3 > un type number puit je la return pour que la fonction soit pas un void 
-function displayClg2(arg3) {
-    return arg3;
-}
-//Une fois ajouter le type <Function> ça nous permet détécter les erreur
+var result6 = buildName3('Bobe'); //Bob Smith
+// console.log(result6);
+//ici le 2em valeur est remlacé (écrasé)  < Smith >
+var result7 = buildName3('Bobe', 'Artur'); //Bob Artur
+// console.log(result7);
+//on peut également dire que 2em valeur est undefined, puis il sera remplacer par <Smith>
+var result8 = buildName3('Bobe', undefined); //Bob Smith
+console.log(result8);
 /*
- 1. Atantion ! c'est n'est pas une fonctin fléchée amis un type function qui return number obligatoirement
- 2. une foie ajouté type fucntion < (num: number)=> number >, on voir les érreur apparaitres ( <num: number >) est un argument
- 3. Attention ! il faut passer argument <num3:number> si non on oras cet error: Impossible d'assigner le type '(num: number) => number' au type '() => number'.ts(2322)
+  Les paramètres initialisés par défaut qui suivent tous les paramètes requis sant trétés comme facutatifs,
+  et comme les paramètes facultatifs, ils peuvent être omis lors de l'appel de leur fonction respective.
+  Les paramètre facultatifs on peut pas placer en premier position
+
+  paramètes requis: < firstName: string >
+  paramètres initialisés par défaut: < lastName?: string > sont des valeur faculatifs
+
 */
-var age3; // Atantion ! c'est n'est pas une fonctin fléchée amis un type function qui return number obligatoirement
-age3 = gift3; //ok
-console.log('age_1 ', age3(20)); //23
-age3 = displayClg2;
-console.log('age_2 ', age3(20)); //20
+function buildName4(firstName, lastName) {
+}
+/*
+  Contrairement aux paramètres facultatifs simples, les paramètres initialisés par défaut
+  n'ont pas besoin de se positionner obligatoirement après paramètres requis. Si un paramètre initialisé par défaut précède un
+  paramètre obligatoire, les utilisateurs doivent passer explicitement "undefinded" pour pouvoir obtenir la valeur initialisée par défaut.
+
+  aramètres facultatifs simples: < lastName?: string >
+  paramètres initialisés par défaut: < firstName: "Will" >
+ 
+*/
+function buildName5(firstName, lastName) {
+    return firstName + " " + lastName;
+}
