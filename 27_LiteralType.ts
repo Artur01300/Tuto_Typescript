@@ -1,5 +1,5 @@
 /*
-  Literal Types : 
+  Types Never: 
 */
 
 // 1. Exerciece 
