@@ -1,12 +1,12 @@
 /*
-  Type Aliacses
+  Type Alias
 */
 
 // 1. Exemple
 let data: number | string;
 let userId: number | string;
 /*
-  Pour éviter la répetition de meme type, on créer type aliace: < type NumString = number | string; >
+  Pour éviter la répetition de meme type, on créer type Alias: < type NumString = number | string; >
   Attation le nom de aliaces commence par un Majusqule !
 */
 
@@ -51,13 +51,13 @@ type ObjInvoice = {
 };
 
 // const welcome2 = (userName :  number|string) => { //avant
-const welcome2 = (userName : AliacNumstr) => { // avec aliac
+const welcome2 = (userName : AliacNumstr) => { // avec Alias
   console.log('Bienvenu', userName);
 }
 welcome2("Dupont");
 
 // const getProfilData2 = (user: {id: number, userName:AliacNumstr}) => { //avant
-const getProfilData2 = (user:ObjIdUser) => {// avec aliac
+const getProfilData2 = (user:ObjIdUser) => {// avec Alias
   console.log(`
     id: ${user.id},
     userName: ${user.userName}
@@ -67,7 +67,7 @@ getProfilData2({id: 2356, userName: 'Arto'});
 
 
 // const invoice = (prodactName: {name: string, price: number}, user: {id: number, userName:AliacNumstr}) => {// avant
-const invoice = (prodactName: ObjInvoice, user: ObjIdUser ) => { // avec aliac
+const invoice = (prodactName: ObjInvoice, user: ObjIdUser ) => { // avec Alias
   console.log(`
   ********************
     Produit: ${prodactName.name},
