@@ -1,7 +1,20 @@
 /*
-    Héritage et Polymarphisme
-    - Héritage: permat de transormer ses propriétés et ses méthode d'un calsse à une autre objet
-    - Polymarphisme
+    Classes (Private, Public, Protected)
+    Comme d'autres langages de programmation, TypeScript prend en charge les modificateurs d'accès au niveau de la classe.
+    Le modificateur d'accès dans TypeScript est très utile et recommandé car il préserve la sécurité des membres de la classe tels que les propriétés et les attributs
+    et les empêche d'être utilisés de manière inappropriée. Nous pouvons également l'utiliser pour contrôler l'accessibilité des données membres d'une classe afin qu'elle
+    ne puisse pas être utilisée brusquement n'importe où dans le fichier de script. Si la classe ne doit pas être définie sur un modificateur d'accès, le TypeScript définit
+    automatiquement l'accès du modificateur public à tous les membres de la classe comme modificateur par défaut.
+
+    - Public:  Par défaut, les membres (propriétés et méthodes) de la classe TypeScript sont publics - vous n'avez donc pas besoin de préfixer les membres avec le mot-clé public.
+        Les membres publics sont accessibles partout sans restrictions, même à partir des sous-classes à plusieurs niveaux, sans aucune erreur de compilation.
+    - Private - Un membre privé n'est pas accessible en dehors de sa classe contenante. Les membres privés ne sont accessibles qu'au sein de la classe et même leurs sous-classes
+        ne seront pas autorisées à utiliser leurs propriétés et attributs privés.
+    - Protected - Un membre protégé n'est pas accessible en dehors de sa classe contenante. Les membres protégés ne sont accessibles qu'au sein de la classe et par l'instance de
+        sa sous-classe/classe enfant.
+
+    - Getters: accède depuis éxtèrieurs, quant on a modificateurs d'accès au niveau de la classe Privé
+    - Setters: modifie les valeur sécurisés à l'entèrieur de la classe  (c'est une fonction, une fois invoqué, on peut antèragire avec les valeurs qu'on a sécurisé)
 */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -18,88 +31,186 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Mather = /** @class */ (function () {
-    //Methodes
-    function Mather(n, h, e) {
+//    - Public -
+var Father = /** @class */ (function () {
+    function Father(n, h, e) {
         this.name = n;
         this.hair = h;
         this.eyes = e;
     }
-    Mather.prototype.speek = function () {
+    Father.prototype.speek = function () {
         console.log("\n            Bonjour, je m'appelle ".concat(this.name, ", j'ai des cheveux ").concat(this.hair, " et j'ai des yeux ").concat(this.eyes, "\n        "));
     };
-    return Mather;
+    return Father;
 }());
-var person1 = new Mather('Alexi', 'noir', 2); // type Mather
-// console.log("Person1 de la classe Mather: ", person1);
-// person1.speek();
-//. HERIGAGE
+var person = new Father('Robert', 'noir', 2);
+//  - Privet - 
 /*
-    Pour pouvoir érité les caractairistiques de la class < Mather >, nous avont devoir utiliser < extends >.
-    - sachant que notr class Children hérite la class Mather, en moment de anstanciation je vais devoir réspécter les éxigance de l'objet
-    Mather.
+    Comment faire pour sécuriser ses information pour qu'on puiss pas accèder depuit l'extèrieur de la calsse ?
+    - on charge les modificateurs d'accès au niveau de la classe et on met en < privet >
+    - et il serra accèssible uniquement à l'entrèrieur de la casse
 */
-var Children = /** @class */ (function (_super) {
-    __extends(Children, _super);
-    function Children() {
-        return _super !== null && _super.apply(this, arguments) || this;
+// Résolition: Dans la propriété de la classe, avant la propriété < name > on ajoute  < private >
+var Father2 = /** @class */ (function () {
+    function Father2(n, h, e) {
+        this.name = n;
+        this.hair = h;
+        this.eyes = e;
     }
-    return Children;
-}(Mather));
-var person2 = new Children('Déméter', 'marron', 2); // Type Children
-// console.log("Person2 de la classe Children: ", person2);
-// person2.speek();
-/*
-    Emaginom la person2 à été adopté par une famie Anglais et la persson ne parle pas en Français ?
-    - on copie la méthode < speek() > depuis de la classe Mather puis on ajoute dans la class Children2
-    - et après on troiduit en englais
-*/
-var Children2 = /** @class */ (function (_super) {
-    __extends(Children2, _super);
-    function Children2() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Children2.prototype.speek = function () {
-        console.log("\n            Hi, my name is ".concat(this.name, ", i have a ").concat(this.hair, " hair and i have ").concat(this.eyes, " eyes.\n        "));
+    Father2.prototype.speek = function () {
+        console.log("Bonjour, je m'appelle ".concat(this.name, ", j'ai des cheveux ").concat(this.hair, " et j'ai des yeux ").concat(this.eyes));
     };
-    return Children2;
-}(Mather));
-var person3 = new Children2('Déméter', 'brown', 2);
-// console.log("Person3 de la classe Children: ", person3);
-// person3.speek();
+    return Father2;
+}());
+var persFather2 = new Father2('Alexi', 'noir', 2);
+// console.log(persFather2.name) // La propriété 'name' est privée et uniquement accessible dans la classe 'Father2'.
+// - Getters -
 /*
-    - Si par éxemple on veut ajouter un autr méthode c'est aussi posible.
-    - Si on veux évoquer la méthode existant de la class parent(Mather) on peut evoquer < supper >:
+    accèder depuis éxtèrieurs, quant on a modificateurs d'accès au niveau de la classe Privé
+    - ce géteur, c'est commen ouvrire une fenêre et donner sertin informations se trouvent dans la casse
+    - le géteure est un méthode qui return la proprièté vule grâce à this.etc
 
 */
-var Children3 = /** @class */ (function (_super) {
-    __extends(Children3, _super);
-    function Children3() {
+var Father3 = /** @class */ (function () {
+    function Father3(n, h, e) {
+        this.name = n;
+        this.hair = h;
+        this.eyes = e;
+    }
+    Father3.prototype.speek = function () {
+        console.log("\n        Bonjour, je m'appelle ".concat(this.name, ", j'ai des cheveux ").concat(this.hair, " et j'ai des yeux ").concat(this.eyes, "\n        "));
+    };
+    // - Getters -
+    Father3.prototype.getName = function () {
+        return this.name;
+    };
+    return Father3;
+}());
+var persFather3 = new Father3('David', 'noir', 2);
+//  console.log(persFather3.getName());// Alexi
+// on peut également sécuriser les méthodes d'une calsse:
+var Father4 = /** @class */ (function () {
+    function Father4(n, h, e) {
+        this.name = n;
+        this.hair = h;
+        this.eyes = e;
+    }
+    Father4.prototype.speek = function () {
+        console.log("\n        Bonjour, je m'appelle ".concat(this.name, ", j'ai des cheveux ").concat(this.hair, " et j'ai des yeux ").concat(this.eyes, "\n        "));
+    };
+    Father4.prototype.getName = function () {
+        return this.name;
+    };
+    return Father4;
+}());
+var persFather4 = new Father4('Nune', 'noir', 2);
+//  console.log(persFather4.speek());//La propriété 'speek' est privée et uniquement accessible dans la classe 'Father4'.
+// - Setters
+/*
+    setters est un méthode à la quelle on dois passer un argument avec un type :
+
+    setHairCalor(newColor: string){
+        this.hair = newColor;
+    }
+*/
+var Father5 = /** @class */ (function () {
+    function Father5(n, h, e) {
+        this.name = n;
+        this.hair = h;
+        this.eyes = e;
+    }
+    Father5.prototype.speek = function () {
+        console.log("Bonjour, je m'appelle ".concat(this.name, ", j'ai des cheveux ").concat(this.hair, " et j'ai des yeux ").concat(this.eyes));
+    };
+    //getter
+    Father5.prototype.getName = function () {
+        return this.name;
+    };
+    //setter
+    Father5.prototype.setHairCalor = function (newColor) {
+        this.hair = newColor;
+    };
+    return Father5;
+}());
+var persFather5 = new Father5('Narek', 'noir', 2);
+persFather5.setHairCalor('Red');
+// console.log(persFather5);// Bonjour, je m'appelle Nune, j'ai des cheveux noir et j'ai des yeux 2
+// un autre situation
+/**
+    émaginont que dans la classe, au niveau de nos propriétés tous les propirété sont < private >
+
+    class Father5 {
+        private name: string;
+        private hair: string;
+        private eyes: number;
+    }
+
+    Dans ce cas la on pet déffinire notre propriété autrement, d'une manière beaucoup plus simple
+
+    Attantion ! on peut faire cet téchique uniqement si on affiche les modificateurs d'accès au niveau de la classe.
+ */
+var Father6 = /** @class */ (function () {
+    function Father6(name, hair, eyes) {
+        this.name = name;
+        this.hair = hair;
+        this.eyes = eyes;
+    }
+    Father6.prototype.speek = function () {
+        console.log("Bonjour, je m'appelle ".concat(this.name, ", j'ai des cheveux ").concat(this.hair, " et j'ai des yeux ").concat(this.eyes));
+    };
+    //getter
+    Father6.prototype.getName = function () {
+        return this.name;
+    };
+    //setter
+    Father6.prototype.setHairCalor = function (newColor) {
+        this.hair = newColor;
+    };
+    return Father6;
+}());
+var persFather6 = new Father6('Artak', 'noir', 2);
+// console.log(persFather6)
+// -   Protected - 
+/*
+    Un membre protégé n'est pas accessible en dehors de sa classe contenante. Les membres protégés ne sont accessibles qu'au sein de la classe et par l'instance de
+    sa sous-classe/classe enfant.
+    - Protected c'est un mayin de protéger les information d'une class sans pour le temps empècher ses dèrnier être accèssible au niveau des class qu'il hérite
+
+*/
+var Father7 = /** @class */ (function () {
+    function Father7(name, hair, eyes) {
+        this.name = name;
+        this.hair = hair;
+        this.eyes = eyes;
+    }
+    Father7.prototype.speek = function () {
+        console.log("Bonjour, je m'appelle ".concat(this.name, ", j'ai des cheveux ").concat(this.hair, " et j'ai des yeux ").concat(this.eyes));
+    };
+    Father7.prototype.getName = function () {
+        return this.name;
+    };
+    Father7.prototype.setHairCalor = function (newColor) {
+        this.hair = newColor;
+    };
+    return Father7;
+}());
+var persFather7 = new Father7('Artak', 'noir', 2);
+console.log(persFather7);
+var Daughter = /** @class */ (function (_super) {
+    __extends(Daughter, _super);
+    function Daughter() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Children3.prototype.speek = function () {
-        console.log("\n            Hi, my name is ".concat(this.name, ", i have a ").concat(this.hair, " hair and i have ").concat(this.eyes, " eyes.\n        "));
+    /*
+        Publc ok
+        Privete: no
+        Proctected: ok
+
+    */
+    Daughter.prototype.getData = function () {
+        return this.eyes;
     };
-    //on évoquer la méthode existant de la class parent(Mather) avec < supper > : puit point et on récupère la méthode
-    Children3.prototype.speekMathLang = function () {
-        _super.prototype.speek.call(this);
-    };
-    return Children3;
-}(Mather));
-var person4 = new Children3('Déméter', 'brown', 2);
-// console.log("Person4 de la classe Children: ", person4);
-// person4.speek();
-//. POLYMARPHISME
-/*
-    Ici on a un type < Mather > et un type < Children3 >
-    Emaginon que je veux changer le taype de 2em objet (personChildren), c'est a dire, le type Children3 en type Mather ?
-    - ça ne va pauser aucun problème à ce niveu la car type chidren3 à hériter de type Mather, seul contrante: dès que la type Children3
-    devien au type Mather il hérite éghalement à ses méthodes es propriétés, donc type Children3 il aura pas la méthode < speekMathLang() >
-*/
-// avant le POLYMARPHISME
-var personMather = new Mather('Déméter', 'brown', 2); // type Mather
-var personChildren = new Children3('Artur', 'Noir', 2);
-// après le POLYMARPHISME
-var personMather2 = new Mather('Déméter', 'brown', 2); // type Mather
-var personChildren2 = new Children3('Artur', 'Noir', 2); // type Mather
-console.log(personChildren2);
+    return Daughter;
+}(Father7));
+var daughter1 = new Daughter('Ani', 'noir', 2);
+console.log(daughter1);
