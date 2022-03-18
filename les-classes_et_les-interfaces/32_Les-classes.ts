@@ -31,7 +31,9 @@ console.log(invoice1);
     de se faite je peux pas créer un autre facture avec un autre objet differant qui n'a pas le mêmet type
     exemple:
 */
+
 //1 exemple
+
 // ici la variable < invoice2 il asigne la valeur objet sans problème
 const invoice2 = {};
 
