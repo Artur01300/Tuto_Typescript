@@ -11,6 +11,15 @@ gift(40)
 //  - CallBack Function : c'est à dire dans le gift2(40) on passe un autre fuction << gift2(40, () =>) >>
 //  - il faut également définire 2em paramète pour le callbak function
 
+function testToGift(age:number, sum:(arg:number)=>number){
+  const meberAgetArtg = age + 3;
+  sum(meberAgetArtg);
+}
+
+console.log(26, num =>{
+  console.log(num)
+})
+
 // function gift2(age: number, sum:(arg: number) => number){
 //   const memberAge = age + 3;
 //   sum(memberAge)//j'envoque à la fuction sum et je passe la valeur memberAge
