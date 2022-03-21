@@ -11,7 +11,6 @@
 // 1. Exercice
 // class
 
-
 class MatherClass {
     name: string;
     eyes: number;

@@ -1,51 +1,47 @@
 /*
-    Access modifyer:
-    readonly peut être modifié que via le constructor
-    
-    - On peut définir un propriété avec ça valeur à l'entèrieur de la class et on ne peut pas modifier sa valeur
-    - on peut définir un propriété avec ça valeur l'heur d'l'instatioantion de la class grâce à constructeur et on peut modifier sa valeur
-        via setter ou getter
+   Interface type:
+   Définir les contraintes d'un objet (Propriétés, Méthodes)
 
+   En TypeScript, deux types sont compatibles si leur structure interne est compatible.
+   Cela nous permet d'implémenter une interface simplement en ayant la forme requise par l'interface, sans implements clause explicite.
+
+   Readonly marche également avec les interfaces
 */
-// On peut définir un propriété avec ça valeur à l'entèrieur de la class et on ne peut pas modifier sa valeur
 // 1. Exercice
-var Car = /** @class */ (function () {
-    function Car() {
-        this.color = 'Red';
-        this.gears = 4;
+// class
+var MatherClass = /** @class */ (function () {
+    function MatherClass(n, e) {
+        this.name = n;
+        this.eyes = e;
     }
-    return Car;
+    MatherClass.prototype.speak = function () {
+        console.log("Je me présente, je m'appelle" + this.name);
+    };
+    return MatherClass;
 }());
-var ford = new Car();
-// console.log('%cmain.ts line:17 ford', 'color: #007acc;', ford);
+var henri = new MatherClass('Henri', 2);
+console.log('%cmain.ts line:26 Henri', 'color: #007acc;', henri);
+// comme les class, les interface peuvent avoire les type de leur interface  <let helene: fatherInterface2>
+var helene;
+helene = {
+    name: "Helène",
+    eyes: 2,
+    speak: function (a) {
+        return a + ' ' + this.name;
+    }
+};
+// console.log(helene)
 // 2. Exercice
-// readonly
-var Car2 = /** @class */ (function () {
-    function Car2() {
-        this.color = 'Red';
-        this.gears = 4;
-    }
-    return Car2;
-}());
-var kia = new Car2();
-// let greenColor = kia.color = 'green'; ///suit < readonly > on ne peut pas changer sa couloeur
-// console.log('%cmain.ts line:17 Kia', 'color: #007acc;', kia);
-// on peut définir un propriété avec ça valeur l'heur de l'instantiation de la class grâce à constructeur et on peut modifier sa valeur via setter ou getter
-var Car3 = /** @class */ (function () {
-    // readonly color: string;
-    // public gears: number = 4;
-    // constructor(c:string, g: number){
-    function Car3(color, gears) {
-        this.color = color;
-        this.gears = gears;
-        // this.color = c;
-        // this.gears = g;
-    }
-    return Car3;
-}());
-var fords = new Car3("White", 4);
-console.log('%cmain.ts line:48 fords', 'color: #007acc;', fords);
-/*
-    En trésumé:
-    en peut ajouter un couleur pendant instantiation, par contre, je peut pas modifier après
-*/ 
+// Utilisation l'interface pour un fonction
+var tolkingPerson = function (a, b) {
+    return a.speak(b);
+};
+var resultExert = tolkingPerson(helene, "Je m'appelle");
+console.log(resultExert);
+var testInterface3;
+testInterface3 = {
+    name: "Hélène",
+    eyes: 2
+};
+var chanteye = testInterface3.eyes = 5; //JS ok TS Non
+console.log(testInterface3);
