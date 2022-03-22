@@ -1,3 +1,4 @@
+"use strict";
 /*  ** Class **
     Une classe est un modèle ou un plan pour créer des objets. Nous pouvons définir les propriétés suivantes dans une définition de classe :
     - Champs : C'est une variable déclarée dans une classe.
@@ -20,33 +21,32 @@
 */
 // 1. Exercice
 // class
-var MatherClass = /** @class */ (function () {
-    function MatherClass(n, e) {
+class MatherClass {
+    constructor(n, e) {
         this.name = n;
         this.eyes = e;
     }
-    MatherClass.prototype.speak = function () {
+    speak() {
         console.log("Je me présente, je m'appelle" + this.name);
-    };
-    return MatherClass;
-}());
-var henri = new MatherClass('Henri', 2);
+    }
+}
+let henri = new MatherClass('Henri', 2);
 // comme les class, les interface peuvent avoire les type de leur interface  <let helene: fatherInterface2>
-var helene;
+let helene;
 helene = {
     name: "Helène",
     eyes: 2,
-    speak: function (a) {
+    speak(a) {
         return a + ' ' + this.name;
     }
 };
 console.log(helene);
 // 2. Exercice
 // Utilisation l'interface pour un fonction
-var tolkingPerson = function (a, b) {
+const tolkingPerson = (a, b) => {
     return a.speak(b);
 };
-var resultExert = tolkingPerson(helene, "Je m'appelle");
+const resultExert = tolkingPerson(helene, "Je m'appelle");
 console.log(resultExert);
 // 3. Exercice
 // Readonly marche également avec les interfaces
